@@ -91,7 +91,7 @@ def checar_lqd():
     ]
 
     # Window
-    window_lqd = Sg.Window('Checar liquidez', layout_lqd, location=(350, 0))
+    window_lqd = Sg.Window('Check Profit', layout_lqd, location=(350, 0))
 
     # Events
     while True:
