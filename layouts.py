@@ -45,10 +45,10 @@ def mkup_layout():
                     custo = round(float(values_mkup['custo'].replace(',', '.')), 2)
                     mkup = round(float(values_mkup['mkup'].replace(',', '.').replace('%', ''))/100, 2)
                     frete_z = 0
-                    calculo_sf = f"""1 = {custo}+({custo}*{mkup})+{frete_z}
-2 = {custo}+{custo * mkup}+{frete_z}
-3 = {custo + (custo * mkup)}+{frete_z}
-answer = R$ {custo + (custo * mkup) + frete_z}""".replace('.', ',')
+                    calculo_sf = f"""step1 = {custo}+({custo}*{mkup})+{frete_z}
+                    step2 = {custo}+{custo * mkup}+{frete_z}
+                    step3 = {custo + (custo * mkup)}+{frete_z}
+                    result = R$ {custo + (custo * mkup) + frete_z}""".replace('.', ',')
                     window_mkup['calculo'].update(calculo_sf)
 
                 # Situação com frete
