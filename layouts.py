@@ -5,7 +5,7 @@ Criado por Victor G. Hermogenes.
 """
 # Importações
 import PySimpleGUI as Sg
-from currency_exchange import get_exchange_rate as gex
+from currency_exchange import currecy_exchange
 
 
 def mkup_layout():
@@ -15,9 +15,8 @@ def mkup_layout():
     # Layout
     layout_mkup = [
         [Sg.Text('This app serves to help you \ndiscovering for how much you want to sell')],
+        [Sg.Button('Currency Analysis')],
         [Sg.Text('Insert your numbers:')],
-        [Sg.Button('Get USD to BRL Value'), Sg.Input('0', key='USD-to-BRL', size=(10, 1))],
-        [Sg.Button('Get USD to CNY Value'), Sg.Input('0', key='USD-to-CNY', size=(10, 1))],
         [Sg.Text('Cost:', size=(16, 1)), Sg.Input('0', key='custo', size=(8, 1))],
         [Sg.Text('Mark Up:', size=(16, 1)), Sg.Input('0', key='mkup', size=(8, 1))],
         [Sg.Text('Freight:', size=(16, 1)), Sg.Input('0', key='frete', size=(8, 1))],
@@ -40,21 +39,11 @@ def mkup_layout():
         if event_mkup == 'Back' or event_mkup == Sg.WIN_CLOSED:
             break
 
-        # Conseguir dolar real
-        elif event_mkup == 'Get USD to BRL Value':
-            get_dolar = f'R$ {round(gex("USD", "BRL"), 5)}'
-            try:
-                window_mkup['USD-to-BRL'].update(get_dolar)
-            except ValueError:
-                Sg.PopupError('Welp')
-        elif event_mkup == 'Get USD to CNY Value':
-            get_cny = f'¥ {round(gex("USD", "CNY"), 5)}'
-            try:
-                window_mkup['USD-to-CNY'].update(get_cny)
-            except ValueError:
-                Sg.popup('Welp')
+        # Análise de Câmbio
+        elif event_mkup == 'Currency Analysis':
+            currecy_exchange()
 
-        # Seguir com os cáclulos
+        # Seguir com os cálculos
         elif event_mkup == 'Run':
             try:
                 # Situação sem frete
@@ -81,7 +70,6 @@ result = R$ {custo+(custo*mkup)+frete}""".replace('.', ',')
 
             except ValueError:
                 Sg.Popup('Impossible to calculate without charge or Mark Up, try again', location=(350, 0))
-                break
 
     window_mkup.close()
 
