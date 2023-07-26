@@ -5,6 +5,7 @@ Criado por Victor G. Hermogenes.
 """
 # Importações
 import PySimpleGUI as Sg
+from currency_exchange import get_exchange_rate as gex
 
 
 def mkup_layout():
@@ -15,6 +16,8 @@ def mkup_layout():
     layout_mkup = [
         [Sg.Text('This app serves to help you \ndiscovering for how much you want to sell')],
         [Sg.Text('Insert your numbers:')],
+        [Sg.Button('Get USD to BRL Value'), Sg.Input('0', key='USD-to-BRL', size=(10, 1))],
+        [Sg.Button('Get USD to CNY Value'), Sg.Input('0', key='USD-to-CNY', size=(10, 1))],
         [Sg.Text('Cost:', size=(16, 1)), Sg.Input('0', key='custo', size=(8, 1))],
         [Sg.Text('Mark Up:', size=(16, 1)), Sg.Input('0', key='mkup', size=(8, 1))],
         [Sg.Text('Freight:', size=(16, 1)), Sg.Input('0', key='frete', size=(8, 1))],
@@ -36,6 +39,20 @@ def mkup_layout():
         # Fechar janela caso necessário
         if event_mkup == 'Back' or event_mkup == Sg.WIN_CLOSED:
             break
+
+        # Conseguir dolar real
+        elif event_mkup == 'Get USD to BRL Value':
+            get_dolar = f'R$ {round(gex("USD", "BRL"), 5)}'
+            try:
+                window_mkup['USD-to-BRL'].update(get_dolar)
+            except ValueError:
+                Sg.PopupError('Welp')
+        elif event_mkup == 'Get USD to CNY Value':
+            get_cny = f'¥ {round(gex("USD", "CNY"), 5)}'
+            try:
+                window_mkup['USD-to-CNY'].update(get_cny)
+            except ValueError:
+                Sg.popup('Welp')
 
         # Seguir com os cáclulos
         elif event_mkup == 'Run':
