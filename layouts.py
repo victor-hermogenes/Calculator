@@ -26,7 +26,7 @@ def mkup_layout():
     ]
 
     # Window
-    window_mkup = Sg.Window('Escolher um MarkUp', layout_mkup, location=(350, 0))
+    window_mkup = Sg.Window('Choose a MarkUp', layout_mkup, location=(350, 0))
 
     # Events
     while True:
