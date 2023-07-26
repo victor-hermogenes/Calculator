@@ -46,9 +46,9 @@ def mkup_layout():
                     mkup = round(float(values_mkup['mkup'].replace(',', '.').replace('%', ''))/100, 2)
                     frete_z = 0
                     calculo_sf = f"""step1 = {custo}+({custo}*{mkup})+{frete_z}
-                    step2 = {custo}+{custo * mkup}+{frete_z}
-                    step3 = {custo + (custo * mkup)}+{frete_z}
-                    result = R$ {custo + (custo * mkup) + frete_z}""".replace('.', ',')
+step2 = {custo}+{custo * mkup}+{frete_z}
+step3 = {custo + (custo * mkup)}+{frete_z}
+result = R$ {custo + (custo * mkup) + frete_z}""".replace('.', ',')
                     window_mkup['calculo'].update(calculo_sf)
 
                 # Situação com frete
@@ -57,9 +57,9 @@ def mkup_layout():
                     mkup = round(float(values_mkup['mkup'].replace(',', '.').replace('%', ''))/100, 2)
                     frete = round(float(values_mkup['frete'].replace(',', '.')), 2)
                     calculo = f"""step1 = {custo}+({custo}*{mkup})+{frete}
-                    step2 = {custo}+{custo*mkup}+{frete}
-                    step3 = {custo+(custo*mkup)}+{frete}
-                    result = R$ {custo+(custo*mkup)+frete}""".replace('.', ',')
+step2 = {custo}+{custo*mkup}+{frete}
+step3 = {custo+(custo*mkup)}+{frete}
+result = R$ {custo+(custo*mkup)+frete}""".replace('.', ',')
                     window_mkup['calculo'].update(calculo)
 
             except ValueError:
@@ -112,10 +112,10 @@ def checar_lqd():
                 frtvc = round(float(values_lqd['frtvc'].replace(',', '.')), 2)
                 custo = round(float(values_lqd['custo'].replace(',', '.')), 2)
                 calculo = f"""step1 = {bruto}-({bruto}*{comissao})-{txfixa}+({frtcliente}-{frtvc})
-                step2 = {bruto}-{round(bruto*comissao, 2)}-{txfixa}+{(frtcliente-frtvc)}
-                step3 = {round(bruto-(bruto*comissao), 2)}-{round(txfixa+(frtcliente-frtvc), 2)}
-                result = R$ {round(bruto-(bruto*comissao)-txfixa+(frtcliente-frtvc), 2)}
-                percentage = {round(((bruto-(bruto*comissao)-txfixa+(frtcliente-frtvc))/custo-1)*100, 2)}%""".replace('.', ',')
+step2 = {bruto}-{round(bruto*comissao, 2)}-{txfixa}+{(frtcliente-frtvc)}
+step3 = {round(bruto-(bruto*comissao), 2)}-{round(txfixa+(frtcliente-frtvc), 2)}
+result = R$ {round(bruto-(bruto*comissao)-txfixa+(frtcliente-frtvc), 2)}
+percentage = {round(((bruto-(bruto*comissao)-txfixa+(frtcliente-frtvc))/custo-1)*100, 2)}%""".replace('.', ',')
                 window_lqd['calculo'].update(calculo)
 
             except ValueError:
@@ -160,9 +160,9 @@ def descobrir_promocao():
                 margem = round(float(values_pmc['margem'].replace(',', '.').replace('%', '')), 2)
                 frete = round(float(values_pmc['frete'].replace(',', '.')), 2)
                 calculo = f"""step1 = ({normal}+{frete})/(1-({margem}/100))
-                step2 = {normal+frete}/(1-{margem/100})
-                step3 = {normal+frete}/{(1-(margem/100))}
-                result = R$ {round((normal+frete)/(1-(margem/100)), 2)}""".replace('.', ',')
+step2 = {normal+frete}/(1-{margem/100})
+step3 = {normal+frete}/{(1-(margem/100))}
+result = R$ {round((normal+frete)/(1-(margem/100)), 2)}""".replace('.', ',')
                 window_pmc['calculo'].update(calculo)
             except ValueError:
                 Sg.Popup('Impossible to calculate, one of the fields is empty! Try again', location=(350, 0))
@@ -203,8 +203,8 @@ def decobrir_bruto():
                 preco = round(float(values_bt['preco'].replace(',', '.')), 2)
                 promocao = round(float(values_bt['promocao'].replace(',', '.').replace('%', '')), 2)/100
                 calculo = f"""step1 = {preco}-({preco}*{promocao})
-                step2 = {preco}-{round(preco*promocao, 2)}
-                result = R$ {round(preco-(preco*promocao), 2)}""".replace('.', ',')
+step2 = {preco}-{round(preco*promocao, 2)}
+result = R$ {round(preco-(preco*promocao), 2)}""".replace('.', ',')
                 window_bt['calculo'].update(calculo)
             except ValueError:
                 Sg.Popup('Impossible to calculate, one of the fields is empty! Try again', location=(350, 0))
@@ -243,7 +243,7 @@ def diferenca_de_preco():
                 menor = round(float(values_dif['menor'].replace(',', '.')), 2)
                 maior = round(float(values_dif['maior'].replace(',', '.')), 2)
                 calculo = f"""step1 = {maior}-{menor} | ({menor}/{maior}-1)*-1
-                result = R$ {round(maior-menor, 2)} | {round(((menor/maior-1)*-1)*100,2)}%""".replace('.', ',')
+result = R$ {round(maior-menor, 2)} | {round(((menor/maior-1)*-1)*100,2)}%""".replace('.', ',')
                 window_dif['calculo'].update(calculo)
             except ValueError:
                 Sg.Popup('Impossible to calculate, one of the fields is empty! Try again', location=(350, 0))
