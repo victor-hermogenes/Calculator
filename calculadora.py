@@ -11,13 +11,14 @@ Sg.theme('DarkBlack')
 
 # Layout
 layout = [
-    [Sg.Text('Escolha uma das opções abaixo:')],
-    [Sg.Button('Escolher um MarkUp', button_color=('black', 'lightgrey'))],
-    [Sg.Button('Checar liquidez', button_color=('black', 'lightgrey'))],
-    [Sg.Button('Descobrir preço de promoção', button_color=('black', 'lightgrey'))],
-    [Sg.Button('Descobrir preço bruto (sem promoção)', button_color=('black', 'lightgrey'))],
-    [Sg.Button('Diferença de valores (entre você e o concorrente)', button_color=('black', 'lightgrey'))],
-    [Sg.Button('Sair', button_color=('white', 'darkred'))]
+    [Sg.Text('Choose one of the options below:')],
+    [Sg.Button('Choose a MarkUp', button_color=('black', 'lightgrey'))],
+    [Sg.Button('Check Profit', button_color=('black', 'lightgrey'))],
+    [Sg.Button('Choose Sale Promotion Price', button_color=('black', 'lightgrey'))],
+    [Sg.Button('Discover Sale Promotion Raw Price', button_color=('black', 'lightgrey'))],
+    [Sg.Button('Difference in values (between you and the competitor)', button_color=('black', 'lightgrey'))],
+    [Sg.Button('Leave', button_color=('white', 'darkred'))],
+    [Sg.Text('Created by Victor G. Hermogenes.')]
 ]
 
 # Window
@@ -26,17 +27,17 @@ window = Sg.Window('Calculadoras', layout, location=(0, 0))
 # Events
 while True:
     event, values = window.read()
-    if event == 'Sair' or event == Sg.WIN_CLOSED:
+    if event == 'Leave' or event == Sg.WIN_CLOSED:
         break
-    elif event == 'Escolher um MarkUp':
+    elif event == 'Choose a MarkUp':
         lt.mkup_layout()
-    elif event == 'Checar liquidez':
+    elif event == 'Check Profit':
         lt.checar_lqd()
-    elif event == 'Descobrir preço de promoção':
+    elif event == 'Choose Sale Promotion Price':
         lt.descobrir_promocao()
-    elif event == 'Descobrir preço bruto (sem promoção)':
+    elif event == 'Discover Sale Promotion Raw Price':
         lt.decobrir_bruto()
-    elif event == 'Diferença de valores (entre você e o concorrente)':
+    elif event == 'Difference in values (between you and the competitor)':
         lt.diferenca_de_preco()
 
 window.close()
