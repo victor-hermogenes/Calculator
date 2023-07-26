@@ -111,10 +111,11 @@ def checar_lqd():
                 frtcliente = round(float(values_lqd['frtcliente'].replace(',', '.')), 2)
                 frtvc = round(float(values_lqd['frtvc'].replace(',', '.')), 2)
                 custo = round(float(values_lqd['custo'].replace(',', '.')), 2)
-                calculo = f"""step1 = {bruto}-({bruto}*{comissao})-{txfixa}+({frtcliente}-{frtvc})
-step2 = {bruto}-{round(bruto*comissao, 2)}-{txfixa}+{(frtcliente-frtvc)}
-step3 = {round(bruto-(bruto*comissao), 2)}-{round(txfixa+(frtcliente-frtvc), 2)}
-result = R$ {round(bruto-(bruto*comissao)-txfixa+(frtcliente-frtvc), 2)}
+                calculo = f"""step1 = {bruto}-({bruto}*{comissao})-{txfixa}+({frtcliente}-{frtvc})-{custo}
+step2 = {bruto}-{round(bruto*comissao, 2)}-{txfixa}+{(frtcliente-frtvc)}-{custo}
+step3 = {round(bruto-(bruto*comissao), 2)}-{round(txfixa+(frtcliente-frtvc), 2)}-{custo}
+step4 = {round(bruto-(bruto*comissao)-(txfixa+frtcliente-frtvc), 2)}-{round(custo, 2)}
+result = R$ {round(bruto-(bruto*comissao)-txfixa+(frtcliente-frtvc)-custo, 2)}
 percentage = {round(((bruto-(bruto*comissao)-txfixa+(frtcliente-frtvc))/custo-1)*100, 2)}%""".replace('.', ',')
                 window_lqd['calculo'].update(calculo)
 
@@ -160,8 +161,8 @@ def descobrir_promocao():
                 margem = round(float(values_pmc['margem'].replace(',', '.').replace('%', '')), 2)
                 frete = round(float(values_pmc['frete'].replace(',', '.')), 2)
                 calculo = f"""step1 = ({normal}+{frete})/(1-({margem}/100))
-step2 = {normal+frete}/(1-{margem/100})
-step3 = {normal+frete}/{(1-(margem/100))}
+step2 = {round(normal+frete, 2)}/(1-{round(margem/100, 2)})
+step3 = {round(normal+frete, 2)}/{round(1-(margem/100), 2)}
 result = R$ {round((normal+frete)/(1-(margem/100)), 2)}""".replace('.', ',')
                 window_pmc['calculo'].update(calculo)
             except ValueError:
