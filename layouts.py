@@ -63,7 +63,7 @@ answer = R$ {custo+(custo*mkup)+frete}""".replace('.', ',')
                     window_mkup['calculo'].update(calculo)
 
             except ValueError:
-                Sg.Popup('Impossível calcular sem custo ou Mark Up, tente novamete', location=(350, 0))
+                Sg.Popup('Impossible to calculate without charge or Mark Up, try again', location=(350, 0))
                 break
 
     window_mkup.close()
@@ -99,11 +99,11 @@ def checar_lqd():
         event_lqd, values_lqd = window_lqd.read()
 
         # Fechar janela caso necessário
-        if event_lqd == 'Voltar' or event_lqd == Sg.WIN_CLOSED:
+        if event_lqd == 'Back' or event_lqd == Sg.WIN_CLOSED:
             break
 
         # Seguir com os cálculos:
-        elif event_lqd == 'Calcular':
+        elif event_lqd == 'Run':
             try:
                 bruto = round(float(values_lqd['bruto'].replace(',', '.')), 2)
                 comissao = round(float(values_lqd['comissao'].replace(',', '.').replace('%', '')), 2) / 100
