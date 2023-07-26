@@ -22,7 +22,7 @@ layout = [
 ]
 
 # Window
-window = Sg.Window('Calculadoras', layout, location=(0, 0))
+window = Sg.Window('Calculations', layout, location=(0, 0))
 
 # Events
 while True:
