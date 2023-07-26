@@ -15,7 +15,7 @@ layout = [
     [Sg.Button('Choose a MarkUp', button_color=('black', 'lightgrey'))],
     [Sg.Button('Check Profit', button_color=('black', 'lightgrey'))],
     [Sg.Button('Choose Sale Promotion Price', button_color=('black', 'lightgrey'))],
-    [Sg.Button('Discover Sale Promotion Raw Price', button_color=('black', 'lightgrey'))],
+    [Sg.Button('Discover Sale Promotion Gross Price', button_color=('black', 'lightgrey'))],
     [Sg.Button('Difference in values (between you and the competitor)', button_color=('black', 'lightgrey'))],
     [Sg.Button('Leave', button_color=('white', 'darkred'))],
     [Sg.Text('Created by Victor G. Hermogenes.')]
