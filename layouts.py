@@ -56,10 +56,10 @@ def mkup_layout():
                     custo = round(float(values_mkup['custo'].replace(',', '.')), 2)
                     mkup = round(float(values_mkup['mkup'].replace(',', '.').replace('%', ''))/100, 2)
                     frete = round(float(values_mkup['frete'].replace(',', '.')), 2)
-                    calculo = f"""1 = {custo}+({custo}*{mkup})+{frete}
-2 = {custo}+{custo*mkup}+{frete}
-3 = {custo+(custo*mkup)}+{frete}
-answer = R$ {custo+(custo*mkup)+frete}""".replace('.', ',')
+                    calculo = f"""step1 = {custo}+({custo}*{mkup})+{frete}
+                    step2 = {custo}+{custo*mkup}+{frete}
+                    step3 = {custo+(custo*mkup)}+{frete}
+                    result = R$ {custo+(custo*mkup)+frete}""".replace('.', ',')
                     window_mkup['calculo'].update(calculo)
 
             except ValueError:
