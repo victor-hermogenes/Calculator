@@ -21,8 +21,11 @@ layout = [
     [Sg.Text('Created by Victor G. Hermogenes.')]
 ]
 
+# Icon
+icon_path = 'Icon.ico'
+
 # Window
-window = Sg.Window('Calculations', layout, location=(0, 0))
+window = Sg.Window('Calculations', layout, location=(0, 0), icon=icon_path)
 
 # Events
 while True:
