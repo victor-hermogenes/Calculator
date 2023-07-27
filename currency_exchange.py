@@ -20,7 +20,7 @@ def currecy_exchange():
          sg.Input(key='target', size=(12, 1)), sg.Text(key='result', size=(12, 1))],
         [sg.Text('Product price:', size=(12, 1)), sg.Input(0, key='cost', size=(12, 1)),
          sg.Input(key='result_product', size=(12, 1))],
-        [sg.Button('Back')]
+        [sg.Button('Back'), sg.Text(key='warning', size=(50, 1))]
     ]
 
     window = sg.Window('Currency Exchange', layout_currency, location=(680, 0))
@@ -35,8 +35,10 @@ def currecy_exchange():
                 exchange = float(get_exchange_rate(values['base'], values['target']))
                 product_price_value = round(float(values['cost']), 2)
                 product_price = round(product_price_value * exchange, 2)
+                warning = 'To run "Choose a MarkUp" calculator, please, close this one.'
                 window['result'].update(exchange)
                 window['result_product'].update(product_price)
+                window['warning'].update(warning)
             except Exception as e:
                 print("Error occurred:", e)
 
