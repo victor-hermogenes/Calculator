@@ -54,7 +54,7 @@ def get_taxes():
 
     layout_get_taxes = [
         [sg.Text('Get your raw taxes price in here:')],
-        [sg.Text('Sell price:', size=(12, 1)), sg.Input(0, key='rawprice', size=(12, 1)),
+        [sg.Text('Invoice Sell price:', size=(12, 1)), sg.Input(0, key='rawprice', size=(12, 1)),
          sg.Text('Tax percentage:', size=(12, 1)), sg.Input(0, key='tax%', size=(12, 1)),
          sg.Input(0, key='result', size=(12, 1)), sg.Button('Run')],
         [sg.Button('Back')],
