@@ -6,3 +6,4 @@ setup.py
 .idea
 lib
 __pycache__/
+venv

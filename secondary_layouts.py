@@ -1,6 +1,8 @@
 import requests
 import PySimpleGUI as sg
 
+icon_path = 'Icon.ico'
+
 
 def get_exchange_rate(base_currency, target_currency):
     try:
@@ -8,8 +10,8 @@ def get_exchange_rate(base_currency, target_currency):
         data = response.json()
         return data[f'{base_currency}{target_currency}']['bid']
 
-    except ValueError:
-        return None
+    except Exception as e:
+        print(f'Error: {e}')
 
 
 def currecy_exchange():
@@ -24,7 +26,8 @@ def currecy_exchange():
         [sg.Text('Created by Victor G. Hermogenes.')]
     ]
 
-    window = sg.Window('Currency Exchange', layout_currency, location=(680, 0), disable_close=True)
+    window = sg.Window('Currency Exchange', layout_currency, location=(680, 0), disable_close=True,
+                       icon=icon_path)
 
     while True:
         event, values = window.read()
@@ -41,7 +44,7 @@ def currecy_exchange():
                 window['result_product'].update(product_price)
                 window['warning'].update(warning)
             except Exception as e:
-                print("Error occurred:", e)
+                sg.Popup("Error:", e, icon=icon_path)
 
     window.close()
 
@@ -51,14 +54,15 @@ def get_taxes():
 
     layout_get_taxes = [
         [sg.Text('Get your raw taxes price in here:')],
-        [sg.Text('Sell price:', size=(12, 1)), sg.Input(0, key='rawprice', size=(12, 1)),
+        [sg.Text('Invoice Sell price:', size=(12, 1)), sg.Input(0, key='rawprice', size=(12, 1)),
          sg.Text('Tax percentage:', size=(12, 1)), sg.Input(0, key='tax%', size=(12, 1)),
          sg.Input(0, key='result', size=(12, 1)), sg.Button('Run')],
         [sg.Button('Back')],
         [sg.Text('Created by Victor G. Hermogenes.')]
     ]
 
-    window_taxes = sg.Window('Get your taxes price:', layout_get_taxes, location=(715, 0), disable_close=True)
+    window_taxes = sg.Window('Get your taxes price:', layout_get_taxes, location=(715, 0), disable_close=True,
+                             icon=icon_path)
 
     while True:
         event, values = window_taxes.read()
@@ -67,12 +71,13 @@ def get_taxes():
             break
         if event == 'Run':
             try:
-                sell_price = float(values['rawprice'])
-                tax = float(values['tax%'].replace('%', '')) / 100
+                sell_price = float(values['rawprice'].replace(',', '.'))
+                tax = float(values['tax%'].replace(',', '.').replace('%', '')) / 100
                 answer = round(sell_price * tax, 2)
                 window_taxes['result'].update(answer)
 
             except Exception as e:
-                sg.Popup(f'Error {e} detected')
+                sg.Popup(f'Error {e} detected', icon=icon_path)
+                break
 
     window_taxes.close()
