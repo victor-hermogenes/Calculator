@@ -38,7 +38,7 @@ while True:
         lt.checar_lqd()
     elif event == 'Choose Sale Promotion Price':
         lt.descobrir_promocao()
-    elif event == 'Discover Sale Promotion Raw Price':
+    elif event == 'Discover Sale Promotion Gross Price':
         lt.decobrir_bruto()
     elif event == 'Difference in values (between you and the competitor)':
         lt.diferenca_de_preco()

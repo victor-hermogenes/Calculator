@@ -8,8 +8,8 @@ def get_exchange_rate(base_currency, target_currency):
         data = response.json()
         return data[f'{base_currency}{target_currency}']['bid']
 
-    except ValueError:
-        return None
+    except Exception as e:
+        print(f'Error: {e}')
 
 
 def currecy_exchange():
@@ -67,8 +67,8 @@ def get_taxes():
             break
         if event == 'Run':
             try:
-                sell_price = float(values['rawprice'])
-                tax = float(values['tax%'].replace('%', '')) / 100
+                sell_price = float(values['rawprice'].replace(',', '.'))
+                tax = float(values['tax%'].repalce(',', '.').replace('%', '')) / 100
                 answer = round(sell_price * tax, 2)
                 window_taxes['result'].update(answer)
 

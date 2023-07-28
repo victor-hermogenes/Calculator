@@ -174,8 +174,8 @@ step2 = {round(normal+frete, 2)}/(1-{round(margem/100, 2)})
 step3 = {round(normal+frete, 2)}/{round(1-(margem/100), 2)}
 result = R$ {round((normal+frete)/(1-(margem/100)), 2)}""".replace('.', ',')
                 window_pmc['calculo'].update(calculo)
-            except ValueError:
-                Sg.Popup('Impossible to calculate, one of the fields is empty! Try again', location=(350, 0))
+            except Exception as e:
+                Sg.Popup(f'Impossible to calculate, one of the fields is empty! Try again, error {e}', location=(350, 0))
                 break
 
     window_pmc.close()
@@ -216,8 +216,8 @@ def decobrir_bruto():
 step2 = {preco}-{round(preco*promocao, 2)}
 result = R$ {round(preco-(preco*promocao), 2)}""".replace('.', ',')
                 window_bt['calculo'].update(calculo)
-            except ValueError:
-                Sg.Popup('Impossible to calculate, one of the fields is empty! Try again', location=(350, 0))
+            except Exception as e:
+                Sg.Popup(f'Impossible to calculate, one of the fields is empty! Try again, error {e}', location=(350, 0))
                 break
 
     window_bt.close()
@@ -255,8 +255,7 @@ def diferenca_de_preco():
                 calculo = f"""step1 = {maior}-{menor} | ({menor}/{maior}-1)*-1
 result = R$ {round(maior-menor, 2)} | {round(((menor/maior-1)*-1)*100,2)}%""".replace('.', ',')
                 window_dif['calculo'].update(calculo)
-            except ValueError:
-                Sg.Popup('Impossible to calculate, one of the fields is empty! Try again', location=(350, 0))
-                break
+            except Exception as e:
+                Sg.Popup(f'Impossible to calculate, one of the fields is empty! Try again, error: {e}', location=(350, 0))
 
     window_dif.close()
