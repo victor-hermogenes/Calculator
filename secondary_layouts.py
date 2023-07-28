@@ -72,11 +72,12 @@ def get_taxes():
         if event == 'Run':
             try:
                 sell_price = float(values['rawprice'].replace(',', '.'))
-                tax = float(values['tax%'].repalce(',', '.').replace('%', '')) / 100
+                tax = float(values['tax%'].replace(',', '.').replace('%', '')) / 100
                 answer = round(sell_price * tax, 2)
                 window_taxes['result'].update(answer)
 
             except Exception as e:
                 sg.Popup(f'Error {e} detected', icon=icon_path)
+                break
 
     window_taxes.close()
