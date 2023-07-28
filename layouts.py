@@ -5,7 +5,7 @@ Criado por Victor G. Hermogenes.
 """
 # Importações
 import PySimpleGUI as Sg
-from currency_exchange import currecy_exchange
+from secondary_layouts import currecy_exchange, get_taxes
 
 
 def mkup_layout():
@@ -81,6 +81,7 @@ def checar_lqd():
     # Layout
     layout_lqd = [
         [Sg.Text('This calculator will help you figure out how much is \nleft over from your sale')],
+        [Sg.Button('Get taxes')],
         [Sg.Text('Fill in the details below')],
         [Sg.Text('Gross sale price:', size=(20, 1)), Sg.Input('0', key='bruto', size=(8, 1))],
         [Sg.Text('Commission percentage:', size=(20, 1)), Sg.Input('0', key='comissao', size=(8, 1))],
@@ -96,7 +97,7 @@ def checar_lqd():
     ]
 
     # Window
-    window_lqd = Sg.Window('Check Profit', layout_lqd, location=(350, 0))
+    window_lqd = Sg.Window('Check Profit', layout_lqd, location=(350, 0), disable_close=True)
 
     # Events
     while True:
@@ -106,6 +107,9 @@ def checar_lqd():
         # Fechar janela caso necessário
         if event_lqd == 'Back' or event_lqd == Sg.WIN_CLOSED:
             break
+
+        elif event_lqd == 'Get taxes':
+            get_taxes()
 
         # Seguir com os cálculos:
         elif event_lqd == 'Run':
@@ -124,9 +128,9 @@ result = R$ {round(bruto-(bruto*comissao)-txfixa+(frtcliente-frtvc)-custo, 2)}
 percentage = {round(((bruto-(bruto*comissao)-txfixa+(frtcliente-frtvc))/custo-1)*100, 2)}%""".replace('.', ',')
                 window_lqd['calculo'].update(calculo)
 
-            except ValueError:
+            except Exception as e:
+                print("Error occurred:", e)
                 Sg.Popup('Impossible to calculate, one of the fields is empty! Try again', location=(350, 0))
-                break
 
     window_lqd.close()
 
