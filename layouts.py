@@ -7,6 +7,9 @@ Criado por Victor G. Hermogenes.
 import PySimpleGUI as Sg
 from secondary_layouts import currecy_exchange, get_taxes
 
+# Icon
+icon_path = 'Icon.ico'
+
 
 def mkup_layout():
     # Escolher o tema
@@ -28,7 +31,7 @@ def mkup_layout():
     ]
 
     # Window
-    window_mkup = Sg.Window('Choose a MarkUp', layout_mkup, location=(350, 0))
+    window_mkup = Sg.Window('Choose a MarkUp', layout_mkup, location=(350, 0), icon=icon_path)
 
     # Events
     while True:
@@ -69,7 +72,8 @@ result = R$ {custo+(custo*mkup)+frete}""".replace('.', ',')
                     window_mkup['calculo'].update(calculo)
 
             except ValueError:
-                Sg.Popup('Impossible to calculate without charge or Mark Up, try again', location=(350, 0))
+                Sg.Popup('Impossible to calculate without charge or Mark Up, try again', location=(350, 0),
+                         icon=icon_path)
 
     window_mkup.close()
 
@@ -97,7 +101,7 @@ def checar_lqd():
     ]
 
     # Window
-    window_lqd = Sg.Window('Check Profit', layout_lqd, location=(350, 0), disable_close=True)
+    window_lqd = Sg.Window('Check Profit', layout_lqd, location=(350, 0), disable_close=True, icon=icon_path)
 
     # Events
     while True:
@@ -130,7 +134,8 @@ percentage = {round(((bruto-(bruto*comissao)-txfixa+(frtcliente-frtvc))/custo-1)
 
             except Exception as e:
                 print("Error occurred:", e)
-                Sg.Popup('Impossible to calculate, one of the fields is empty! Try again', location=(350, 0))
+                Sg.Popup('Impossible to calculate, one of the fields is empty! Try again', location=(350, 0),
+                         icon=icon_path)
 
     window_lqd.close()
 
@@ -153,7 +158,7 @@ def descobrir_promocao():
     ]
 
     # Window
-    window_pmc = Sg.Window('Descobrir preço de promoção', layout_pmc, location=(350, 0))
+    window_pmc = Sg.Window('Descobrir preço de promoção', layout_pmc, location=(350, 0), icon=icon_path)
 
     # Ler eventos
     while True:
@@ -175,7 +180,8 @@ step3 = {round(normal+frete, 2)}/{round(1-(margem/100), 2)}
 result = R$ {round((normal+frete)/(1-(margem/100)), 2)}""".replace('.', ',')
                 window_pmc['calculo'].update(calculo)
             except Exception as e:
-                Sg.Popup(f'Impossible to calculate, one of the fields is empty! Try again, error {e}', location=(350, 0))
+                Sg.Popup(f'Impossible to calculate, one of the fields is empty! Try again, error {e}',
+                         location=(350, 0) , icon=icon_path)
                 break
 
     window_pmc.close()
@@ -197,7 +203,7 @@ def decobrir_bruto():
     ]
 
     # Window
-    window_bt = Sg.Window('Discover gross price (no promotion)', layout_bt, location=(350, 1))
+    window_bt = Sg.Window('Discover gross price (no promotion)', layout_bt, location=(350, 1), icon=icon_path)
 
     # Ler eventos
     while True:
@@ -217,7 +223,8 @@ step2 = {preco}-{round(preco*promocao, 2)}
 result = R$ {round(preco-(preco*promocao), 2)}""".replace('.', ',')
                 window_bt['calculo'].update(calculo)
             except Exception as e:
-                Sg.Popup(f'Impossible to calculate, one of the fields is empty! Try again, error {e}', location=(350, 0))
+                Sg.Popup(f'Impossible to calculate, one of the fields is empty! Try again, error {e}',
+                         location=(350, 0), icon=icon_path)
                 break
 
     window_bt.close()
@@ -239,7 +246,8 @@ def diferenca_de_preco():
     ]
 
     # Window
-    window_dif = Sg.Window('Difference in values (between you and the competitor)', layout_dif, location=(350, 0))
+    window_dif = Sg.Window('Difference in values (between you and the competitor)', layout_dif, location=(350, 0),
+                           icon=icon_path)
 
     # Ler eventos
     while True:
@@ -256,6 +264,7 @@ def diferenca_de_preco():
 result = R$ {round(maior-menor, 2)} | {round(((menor/maior-1)*-1)*100,2)}%""".replace('.', ',')
                 window_dif['calculo'].update(calculo)
             except Exception as e:
-                Sg.Popup(f'Impossible to calculate, one of the fields is empty! Try again, error: {e}', location=(350, 0))
+                Sg.Popup(f'Impossible to calculate, one of the fields is empty! Try again, error: {e}',
+                         location=(350, 0), icon=icon_path)
 
     window_dif.close()

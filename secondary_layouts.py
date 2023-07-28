@@ -1,6 +1,8 @@
 import requests
 import PySimpleGUI as sg
 
+icon_path = 'Icon.ico'
+
 
 def get_exchange_rate(base_currency, target_currency):
     try:
@@ -24,7 +26,8 @@ def currecy_exchange():
         [sg.Text('Created by Victor G. Hermogenes.')]
     ]
 
-    window = sg.Window('Currency Exchange', layout_currency, location=(680, 0), disable_close=True)
+    window = sg.Window('Currency Exchange', layout_currency, location=(680, 0), disable_close=True,
+                       icon=icon_path)
 
     while True:
         event, values = window.read()
@@ -58,7 +61,8 @@ def get_taxes():
         [sg.Text('Created by Victor G. Hermogenes.')]
     ]
 
-    window_taxes = sg.Window('Get your taxes price:', layout_get_taxes, location=(715, 0), disable_close=True)
+    window_taxes = sg.Window('Get your taxes price:', layout_get_taxes, location=(715, 0), disable_close=True,
+                             icon=icon_path)
 
     while True:
         event, values = window_taxes.read()
@@ -73,6 +77,6 @@ def get_taxes():
                 window_taxes['result'].update(answer)
 
             except Exception as e:
-                sg.Popup(f'Error {e} detected')
+                sg.Popup(f'Error {e} detected', icon=icon_path)
 
     window_taxes.close()
