@@ -117,9 +117,9 @@ def checar_lqd():
                 frtvc = round(float(values_lqd['frtvc'].replace(',', '.')), 2)
                 custo = round(float(values_lqd['custo'].replace(',', '.')), 2)
                 calculo = f"""step1 = {bruto}-({bruto}*{comissao})-{txfixa}+({frtcliente}-{frtvc})-{custo}
-step2 = {bruto}-{round(bruto*comissao, 2)}-{txfixa}+{(frtcliente-frtvc)}-{custo}
+step2 = {bruto}-{round(bruto*comissao, 2)}-{txfixa}+{round(frtcliente-frtvc, 2)}-{custo}
 step3 = {round(bruto-(bruto*comissao), 2)}-{round(txfixa+(frtcliente-frtvc), 2)}-{custo}
-step4 = {round(bruto-(bruto*comissao)-(txfixa+frtcliente-frtvc), 2)}-{round(custo, 2)}
+step4 = {round(bruto-(bruto*comissao)-(txfixa+frtcliente-frtvc), 2)}-{custo}
 result = R$ {round(bruto-(bruto*comissao)-txfixa+(frtcliente-frtvc)-custo, 2)}
 percentage = {round(((bruto-(bruto*comissao)-txfixa+(frtcliente-frtvc))/custo-1)*100, 2)}%""".replace('.', ',')
                 window_lqd['calculo'].update(calculo)
