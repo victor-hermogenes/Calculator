@@ -44,7 +44,7 @@ def currecy_exchange():
                 window['result_product'].update(product_price)
                 window['warning'].update(warning)
             except Exception as e:
-                print("Error occurred:", e)
+                sg.Popup("Error:", e, icon=icon_path)
 
     window.close()
 
