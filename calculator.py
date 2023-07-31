@@ -17,6 +17,7 @@ layout = [
     [Sg.Button('Choose Sale Promotion Price', button_color=('black', 'lightgrey'))],
     [Sg.Button('Discover Sale Promotion Gross Price', button_color=('black', 'lightgrey'))],
     [Sg.Button('Difference in values (between you and the competitor)', button_color=('black', 'lightgrey'))],
+    [Sg.Button('Proportional Reasoning', button_color=('black', 'lightgrey'))],
     [Sg.Button('Leave', button_color=('white', 'darkred'))],
     [Sg.Text('Created by Victor G. Hermogenes.')]
 ]
@@ -42,5 +43,7 @@ while True:
         lt.decobrir_bruto()
     elif event == 'Difference in values (between you and the competitor)':
         lt.diferenca_de_preco()
+    elif event == 'Proportional Reasoning':
+        lt.proportions()
 
 window.close()

@@ -268,3 +268,44 @@ result = R$ {round(maior-menor, 2)} | {round(((menor/maior-1)*-1)*100,2)}%""".re
                          location=(350, 0), icon=icon_path)
 
     window_dif.close()
+
+
+def proportions():
+    # Escolher o tema:
+    Sg.theme('Dark Black')
+
+    # Montar o Layout:
+    proportions_layout = [
+        [Sg.Text("""This will help you to make proportions with 3 values to discover a 4th using the following formular:\n
+                 X x Y \ Z = R""")],
+        [Sg.Text('Number X: ', size=(15, 1)), Sg.Input(0, size=(8, 1), key='x')],
+        [Sg.Text('Number Y: ', size=(15, 1)), Sg.Input(0, size=(8, 1), key='y')],
+        [Sg.Text('Number Z: ', size=(15, 1)), Sg.Input(0, size=(8, 1), key='z')],
+        [Sg.Text('Result: ')],
+        [Sg.Output(key='r', size=(45, 3))],
+        [Sg.Button('Run'), Sg.Button('Back', button_color=('black', 'lightgrey'))]
+    ]
+
+    # Montar janela
+    proportions_window = Sg.Window('Proportional Reasoning', proportions_layout, location=(350, 0), icon=icon_path)
+
+    # Ler eventos
+    while True:
+        event, values = proportions_window.read()
+        if event == 'Back' or event == Sg.WIN_CLOSED:
+            break
+        elif event == 'Run':
+            try:
+                value_x = round(float(values['x'].replace(',', '.')), 2)
+                value_y = round(float(values['y'].replace(',', '.')), 2)
+                value_z = round(float(values['z'].replace(',', '.')), 2)
+                result = f"""{value_x} x {value_y} / {value_z}
+{value_x * value_y} / {value_z}
+result: {round((value_x * value_y) / value_z, 2)} | {round(((value_x * value_y) / value_z) / 100, 2)}%"""
+                proportions_window['r'].update(result)
+            
+            except Exception as e:
+                Sg.Popup(f'Error: {e}')
+                break
+    
+    proportions_window.close()
