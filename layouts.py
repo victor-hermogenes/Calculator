@@ -305,7 +305,7 @@ result: {round((value_x * value_y) / value_z, 2)} | {round(((value_x * value_y) 
                 proportions_window['r'].update(result)
             
             except Exception as e:
-                Sg.Popup(f'Error: {e}')
+                Sg.Popup(f'Error: {e}', icon=icon_path)
                 break
     
     proportions_window.close()
