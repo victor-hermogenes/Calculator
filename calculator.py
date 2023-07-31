@@ -44,6 +44,6 @@ while True:
     elif event == 'Difference in values (between you and the competitor)':
         lt.diferenca_de_preco()
     elif event == 'Proportional Reasoning':
-        lt.proportions()
+        lt.proportions
 
 window.close()
